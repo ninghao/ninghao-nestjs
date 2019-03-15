@@ -1,14 +1,10 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Req, Query } from '@nestjs/common';
 
 @Controller('posts')
 export class PostsController {
   @Get()
-  index(@Req() request) {
-    console.log(
-      request.ip,
-      request.hostname,
-      request.method
-    )
+  index(@Query() query) {
+    console.log(query)
 
     return [
       {
