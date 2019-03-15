@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('posts')
-export class PostsController {}
+export class PostsController {
+  @Get()
+  index() {
+    return [
+      {
+        title: 'hello ~'
+      }
+    ];
+  }
+}
