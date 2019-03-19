@@ -4,11 +4,7 @@ import { DemoService } from './providers/demo/demo.service';
 
 @Controller('posts')
 export class PostsController {
-  private readonly demoService;
-
-  constructor(demoService: DemoService) {
-    this.demoService = demoService;
-  }
+  constructor(private readonly demoService: DemoService) { }
 
   @Get()
   index() {
