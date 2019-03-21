@@ -24,7 +24,7 @@ export class PostsController {
   // @UseFilters(DemoFilter)
   store(@Body() post: CreatePostDto) {
     // throw new HttpException('没有权限！', HttpStatus.FORBIDDEN);
-    throw new ForbiddenException('没有权限！');
-    // this.demoService.create(post);
+    // throw new ForbiddenException('没有权限！');
+    this.demoService.create(post);
   }
 }
