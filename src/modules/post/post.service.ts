@@ -15,4 +15,9 @@ export class PostService {
     await this.postRepository.save(entity);
     return entity;
   }
+
+  async index() {
+    const entities = await this.postRepository.find();
+    return entities;
+  }
 }
