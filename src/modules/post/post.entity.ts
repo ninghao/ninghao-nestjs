@@ -8,7 +8,7 @@ export class Post {
   @Column()
   title: string;
 
-  @Column('longtext')
+  @Column('longtext', { nullable: true })
   body: string;
 
   @CreateDateColumn()
