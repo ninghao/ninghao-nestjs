@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './user.dto';
 
@@ -14,6 +14,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @UseInterceptors(ClassSerializerInterceptor)
   async show(@Param('id') id: string) {
     return await this.userService.show(id);
   }
