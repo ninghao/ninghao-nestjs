@@ -1,6 +1,7 @@
-import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards } from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostDto } from './post.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('posts')
 export class PostController {
@@ -9,6 +10,7 @@ export class PostController {
   ) { }
 
   @Post()
+  @UseGuards(AuthGuard())
   async store(@Body() data: PostDto) {
     return await this.postService.store(data);
   }
