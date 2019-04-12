@@ -24,7 +24,7 @@ export class User {
   @OneToMany(type => Post, post => post.user)
   posts: Post[]
 
-  @ManyToMany(type => Post)
+  @ManyToMany(type => Post, post => post.liked)
   @JoinTable()
   voted: Post[]
 

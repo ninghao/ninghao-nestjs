@@ -55,4 +55,10 @@ export class PostController {
   ) {
     return await this.postService.unVote(id, user);
   }
+
+  @Get(':id/liked')
+  @UseInterceptors(ClassSerializerInterceptor)
+  async liked(@Param('id', ParseIntPipe) id: number) {
+    return await this.postService.liked(id);
+  }
 }
