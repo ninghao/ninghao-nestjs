@@ -42,4 +42,12 @@ export class PostService {
     const result = await this.postRepository.delete(id);
     return result;
   }
+
+  async vote(id: number, user: User) {
+    await this.postRepository
+      .createQueryBuilder()
+      .relation(User, 'voted')
+      .of(user)
+      .add(id);
+  }
 }
