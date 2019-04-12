@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, UseInterceptors, ClassSerializerInterceptor, ParseIntPipe } from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostDto } from './post.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -36,5 +36,11 @@ export class PostController {
   @Delete(':id')
   async destroy(@Param('id') id: string) {
     return await this.postService.destroy(id);
+  }
+
+  @Post(':id/vote')
+  async vote(@Param('id', ParseIntPipe) id: number) {
+    console.log(typeof id);
+
   }
 }
