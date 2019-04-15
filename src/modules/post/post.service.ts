@@ -21,10 +21,18 @@ export class PostService {
     return entity;
   }
 
-  async index() {
-    const entities = await this.postRepository.find({
-      relations: ['user']
-    });
+  async index(categories: string) {
+    const queryBuilder = await this.postRepository
+      .createQueryBuilder('post');
+
+    queryBuilder.leftJoinAndSelect('post.user', 'user');
+    queryBuilder.leftJoinAndSelect('post.category', 'category');
+
+    if (categories) {
+      queryBuilder.where('category.alias = :categories', { categories });
+    }
+
+    const entities = queryBuilder.getMany();
     return entities;
   }
 
