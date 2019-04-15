@@ -1,6 +1,7 @@
 import {
-  Entity, PrimaryGeneratedColumn, Column
+  Entity, PrimaryGeneratedColumn, Column, OneToMany
 } from 'typeorm';
+import { Post } from '../post/post.entity';
 
 @Entity()
 export class Category {
@@ -12,4 +13,7 @@ export class Category {
 
   @Column()
   alias: string;
+
+  @OneToMany(type => Post, post => post.category)
+  posts: Post[]
 }
