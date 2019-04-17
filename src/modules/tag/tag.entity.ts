@@ -8,6 +8,6 @@ export class Tag {
   @Column({ unique: true })
   name: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   alias: string;
 }
