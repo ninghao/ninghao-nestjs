@@ -19,4 +19,12 @@ export class CommentService {
       post: { id }
     });
   }
+
+  async update(id: number, data: CommentDto) {
+    return await this.commentRepository.update(id, data);
+  }
+
+  async destroy(id: number) {
+    return await this.commentRepository.delete(id);
+  }
 }
