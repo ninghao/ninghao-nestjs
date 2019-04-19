@@ -7,6 +7,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoryModule } from './modules/category/category.module';
 import { TagModule } from './modules/tag/tag.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { TagModule } from './modules/tag/tag.module';
     UserModule,
     AuthModule,
     CategoryModule,
-    TagModule
+    TagModule,
+    CommentModule
   ],
   controllers: [AppController],
   providers: [AppService],
