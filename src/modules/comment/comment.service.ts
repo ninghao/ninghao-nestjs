@@ -27,4 +27,22 @@ export class CommentService {
   async destroy(id: number) {
     return await this.commentRepository.delete(id);
   }
+
+  async showPostComments(id: number) {
+    return await this.commentRepository
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.user', 'user')
+      .leftJoinAndSelect('comment.post', 'post')
+      .where('post.id = :id', { id })
+      .getMany()
+  }
+
+  async showUserComments(id: number) {
+    return await this.commentRepository
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.user', 'user')
+      .leftJoinAndSelect('comment.post', 'post')
+      .where('user.id = :id', { id })
+      .getMany()
+  }
 }
