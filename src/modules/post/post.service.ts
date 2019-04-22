@@ -77,6 +77,10 @@ export class PostService {
       queryBuilder.andWhere('tag.name IN (:...tags)', { tags });
     }
 
+    queryBuilder
+      .take(3)
+      .skip(3 * (2 - 1));
+
     const entities = queryBuilder.getMany();
     return entities;
   }
