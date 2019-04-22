@@ -3,4 +3,6 @@ export interface ListOptionsInterface {
   tags: string;
   limit: number;
   page: number;
+  sort: string;
+  order: 'ASC' | 'DESC';
 }
