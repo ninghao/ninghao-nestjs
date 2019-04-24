@@ -11,13 +11,17 @@ export class AuthController {
   ) { }
 
   @Post('login')
-  async login(@Body() data: LoginDto) {
+  async login(
+    @Body() data: LoginDto
+  ) {
     return await this.authService.login(data);
   }
 
   @Get('test')
   @UseGuards(AuthGuard())
-  async authTest(@User() user) {
+  async authTest(
+    @User() user
+  ) {
     console.log('user:', user);
 
     return {

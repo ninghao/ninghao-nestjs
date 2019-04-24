@@ -9,7 +9,9 @@ export class CategoryController {
   ) { }
 
   @Post()
-  async store(@Body() data: CategoryDto) {
+  async store(
+    @Body() data: CategoryDto
+  ) {
     return await this.categoryService.store(data);
   }
 }

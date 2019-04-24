@@ -16,30 +16,41 @@ export class PostController {
 
   @Post()
   @UseGuards(AuthGuard())
-  async store(@Body() data: PostDto, @User() user: UserEntity) {
+  async store(
+    @Body() data: PostDto,
+    @User() user: UserEntity
+  ) {
     return await this.postService.store(data, user);
   }
 
   @Get()
   @UseInterceptors(ClassSerializerInterceptor, TransformInterceptor)
   async index(
-    @ListOptions({ limit: 10, sort: 'updated', order: 'DESC' }) options: ListOptionsInterface
+    @ListOptions({ limit: 10, sort: 'updated', order: 'DESC' })
+    options: ListOptionsInterface
   ) {
     return await this.postService.index(options);
   }
 
   @Get(':id')
-  async show(@Param('id') id: string) {
+  async show(
+    @Param('id') id: string
+  ) {
     return await this.postService.show(id);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() data: Partial<PostDto>) {
+  async update(
+    @Param('id') id: string,
+    @Body() data: Partial<PostDto>
+  ) {
     return await this.postService.update(id, data);
   }
 
   @Delete(':id')
-  async destroy(@Param('id') id: string) {
+  async destroy(
+    @Param('id') id: string
+  ) {
     return await this.postService.destroy(id);
   }
 
@@ -63,7 +74,9 @@ export class PostController {
 
   @Get(':id/liked')
   @UseInterceptors(ClassSerializerInterceptor)
-  async liked(@Param('id', ParseIntPipe) id: number) {
+  async liked(
+    @Param('id', ParseIntPipe) id: number
+  ) {
     return await this.postService.liked(id);
   }
 }

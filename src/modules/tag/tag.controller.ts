@@ -9,17 +9,24 @@ export class TagController {
   ) { }
 
   @Post()
-  async store(@Body() data: TagDto) {
+  async store(
+    @Body() data: TagDto
+  ) {
     return await this.tagService.store(data);
   }
 
   @Put(':id')
-  async update(@Param('id', ParseIntPipe) id: number, @Body() data: TagDto) {
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: TagDto
+  ) {
     return await this.tagService.update(id, data);
   }
 
   @Delete(':id')
-  async destroy(@Param('id', ParseIntPipe) id: number) {
+  async destroy(
+    @Param('id', ParseIntPipe) id: number
+  ) {
     return await this.tagService.destroy(id);
   }
 }

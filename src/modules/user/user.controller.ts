@@ -9,25 +9,34 @@ export class UserController {
   ) { }
 
   @Post()
-  async store(@Body() data: UserDto) {
+  async store(
+    @Body() data: UserDto
+  ) {
     return await this.userService.store(data);
   }
 
   @Get(':id')
   @UseInterceptors(ClassSerializerInterceptor)
-  async show(@Param('id') id: string) {
+  async show(
+    @Param('id') id: string
+  ) {
     return await this.userService.show(id);
   }
 
   @Put(':id/password')
   @UseInterceptors(ClassSerializerInterceptor)
-  async updatePassword(@Param('id') id: string, @Body() data: UpdatePasswordDto) {
+  async updatePassword(
+    @Param('id') id: string,
+    @Body() data: UpdatePasswordDto
+  ) {
     return await this.userService.updatePassword(id, data);
   }
 
   @Get(':id/liked')
   @UseInterceptors(ClassSerializerInterceptor)
-  async liked(@Param('id', ParseIntPipe) id: number) {
+  async liked(
+    @Param('id', ParseIntPipe) id: number
+  ) {
     return this.userService.liked(id);
   }
 }
