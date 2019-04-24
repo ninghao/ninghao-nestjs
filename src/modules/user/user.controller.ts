@@ -3,6 +3,8 @@ import { UserService } from './user.service';
 import { UserDto, UpdatePasswordDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AccessGuard } from 'src/core/guards/access.guard';
+import { Permissions } from 'src/core/decorators/permissions.decorator';
+import { UserRole } from 'src/core/enums/user-role.enum';
 
 @Controller('users')
 export class UserController {
@@ -44,6 +46,7 @@ export class UserController {
 
   @Put(':id')
   @UseGuards(AuthGuard(), AccessGuard)
+  @Permissions({ role: UserRole.ADMIN })
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() data: UserDto
