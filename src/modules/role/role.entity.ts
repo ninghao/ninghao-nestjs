@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 import { UserRole } from 'src/core/enums/user-role.enum';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class Role {
@@ -11,4 +12,7 @@ export class Role {
 
   @Column()
   alias: string;
+
+  @ManyToMany(type => User, user => user.roles)
+  users: User[];
 }
