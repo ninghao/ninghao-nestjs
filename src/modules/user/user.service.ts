@@ -59,7 +59,9 @@ export class UserService {
     const queryBuilder = await this.userRepository
       .createQueryBuilder('user');
 
-    queryBuilder.where('user.name = :name', { name });
+    queryBuilder
+      .where('user.name = :name', { name })
+      .leftJoinAndSelect('user.roles', 'roles');
 
     if (password) {
       queryBuilder.addSelect('user.password');
