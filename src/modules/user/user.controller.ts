@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Param, UseInterceptors, ClassSerializerInt
 import { UserService } from './user.service';
 import { UserDto, UpdatePasswordDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { AccessGuard } from 'src/core/guards/access.guard';
 
 @Controller('users')
 export class UserController {
@@ -42,7 +43,7 @@ export class UserController {
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard(), AccessGuard)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() data: UserDto
