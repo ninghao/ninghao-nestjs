@@ -53,4 +53,13 @@ export class UserController {
   ) {
     return await this.userService.update(id, data);
   }
+
+  @Get(':id/possess/:resource/:resourceId')
+  async possess(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('resource') resource: string,
+    @Param('resourceId', ParseIntPipe) resourceId: number
+  ) {
+    return await this.userService.possess(id, resource, resourceId);
+  }
 }
