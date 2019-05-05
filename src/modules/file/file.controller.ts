@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('file')
-export class FileController {}
+@Controller('files')
+export class FileController {
+  @Post()
+  @UseInterceptors(FileInterceptor('file'))
+  async store(
+    @UploadedFile() data
+  ) {
+    console.log(data);
+  }
+}
