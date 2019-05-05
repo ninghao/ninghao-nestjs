@@ -7,6 +7,11 @@ import { User as UserEntity } from '../user/user.entity';
 import { ListOptions } from 'src/core/decorators/list-options.decorator';
 import { ListOptionsInterface } from 'src/core/interfaces/list-options.interface';
 import { TransformInterceptor } from 'src/core/interceptors/transform.interceptor';
+import { AccessGuard } from 'src/core/guards/access.guard';
+import { Permissions } from 'src/core/decorators/permissions.decorator';
+import { Resource } from 'src/core/enums/resource.enum';
+import { Possession } from 'src/core/enums/possession.enum';
+import { UserRole } from 'src/core/enums/user-role.enum';
 
 @Controller('posts')
 export class PostController {
@@ -40,6 +45,8 @@ export class PostController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard(), AccessGuard)
+  @Permissions({ resource: Resource.POST, possession: Possession.OWN, role: UserRole.VIP })
   async update(
     @Param('id') id: string,
     @Body() data: Partial<PostDto>
