@@ -38,7 +38,7 @@ export class UserService {
 
   async updatePassword(id: string, data: UpdatePasswordDto) {
     const { password, newPassword } = data;
-    const entity = await this.userRepository.findOne(id);
+    const entity = await this.userRepository.findOne(id, {select: ['id', 'name', 'password']});
 
     if (!entity) {
       throw new NotFoundException('没找到用户。');
